@@ -1,0 +1,262 @@
+@import '../../variables.scss';
+
+.gallery-section {
+  padding-bottom: 10%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-y: hidden;
+}
+
+.gallery-section.causality {
+  background-image: url('https://i.postimg.cc/9QmrGmPC/white.png');
+}
+
+.gallery-section.motamot {
+  background-image: url('https://i.postimg.cc/7668qcy3/black.png');
+}
+
+.gallery-section.tataraces {
+  background-image: url('https://i.postimg.cc/59mjkWd4/lightgrey.png');
+}
+
+.gallery-section.consigliere {
+  background-image: url('https://i.postimg.cc/T1HfgxTY/grey.png');
+}
+
+.gallery-title span {
+  display: block;
+  font-size: 30px;
+  text-align: left;
+  font-weight: 400;
+  margin-left: 2.5%;
+}
+
+.gallery-title.causality {
+  background: $title-gradient-dark;
+  -webkit-text-fill-color: rgba(99, 99, 99, 0);
+  word-wrap: break-word;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gallery-title.motamot {
+  background: $title-gradient-light;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  word-wrap: break-word;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gallery-title.tataraces {
+  background: $title-gradient-grey-reversed;
+  -webkit-text-fill-color: rgba(164, 164, 164, 0);
+  word-wrap: break-word;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gallery-title.consigliere {
+  background: $title-gradient-grey;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  word-wrap: break-word;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gallery-description {
+  font-size: 16px;
+  font-weight: 300;
+  padding: 8px 0;
+  opacity: 0.75;
+  width: 50vw;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  position: relative;
+  bottom: 100px;
+  margin: 0 auto;
+}
+
+.gallery-pictures-container {
+  width: 70vw;
+}
+
+.gallery-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 0;
+}
+
+.gallery-picture .picture-name {
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.8;
+  padding-bottom: 5%;
+}
+
+.gallery-picture .picture-details {
+  font-size: 16px;
+  font-weight: 300;
+  opacity: 0.6;
+  margin: 8px 0;
+}
+
+.picture-image img:nth-of-type(2) {
+  max-height: 60vh;
+  max-width: 100%;
+}
+
+.picture-icon {
+  position: absolute;
+  width: 40px;
+  z-index: 100;
+  opacity: 0;
+  transition: 500ms all ease-in-out;
+}
+
+.picture-image:hover .picture-icon {
+  opacity: 1;
+}
+
+.picture-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.picture-info {
+  width: 50%;
+}
+
+.modal-picture {
+  height: 90vh;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modal-picture img {
+  height: 100%;
+  outline: 0;
+}
+
+/* TABLET DOWN  */
+@media (max-width: 1023px) {
+  .gallery-title.causality {
+    -webkit-text-fill-color: rgba(99, 99, 99, 0.5);
+  }
+
+  .gallery-title.motamot {
+    -webkit-text-fill-color: rgba(107, 107, 107, 0.5);
+  }
+
+  .gallery-title.consigliere {
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .picture-image {
+    width: 100%;
+    margin: 0 !important;
+    order: 2 !important;
+  }
+
+  .picture-info {
+    text-align: left;
+    order: 1 !important;
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .gallery-picture {
+    flex-direction: column;
+  }
+
+  .picture-icon {
+    display: none;
+  }
+
+  .gallery-section {
+    background-repeat: repeat-y;
+    background-size: contain;
+  }
+}
+
+/* MOBILE PORTRAIT */
+@media (max-width: 414px) {
+  .gallery-title {
+    font-size: 55px;
+  }
+  .gallery-pictures-container {
+    width: 80vw;
+  }
+  .gallery-picture .picture-name {
+    font-size: 20px;
+  }
+  .gallery-picture .picture-details {
+    font-size: 14px;
+  }
+  .gallery-description {
+    font-size: 14px;
+  }
+  .gallery-description {
+    bottom: 30px;
+    width: 80vw;
+    font-size: 14px;
+  }
+}
+
+/* MOBILE LANDSCAPE */
+@media (min-width: 568px) and (max-width: 812px) {
+  .gallery-description {
+    width: 70vw;
+    bottom: 30px;
+  }
+  .picture-image {
+    justify-content: left;
+  }
+  .picture-image img:nth-of-type(2) {
+    max-height: 90vh;
+    max-width: 100%;
+  }
+}
+
+/* TABLET PORTRAIT */
+@media (min-width: 768px) and (max-width: 834px) {
+  .gallery-picture .picture-name {
+    font-size: 22px;
+  }
+  .gallery-picture .picture-details {
+    font-size: 16px;
+  }
+  .gallery-description {
+    font-size: 16px;
+  }
+}
+
+/* TABLET LANDSCAPE */
+@media (min-width: 1024px) and (max-width: 1112px) {
+  .gallery-description {
+    bottom: 80px;
+    width: 70vw;
+  }
+  .picture-image {
+    margin: 0 5% !important;
+  }
+  .modal-picture {
+    height: 80vh;
+  }
+
+  .modal-picture img {
+    max-height: 95vh;
+    height: auto;
+    max-width: 90vw;
+  }
+}
