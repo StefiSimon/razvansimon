@@ -25,14 +25,20 @@
   top: 105px;
 }
 
-.contact-social-desktop a {
-  padding: 8px;
+.social-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: $button-gradient-light-hover;
+  width: 48px;
+  height: 48px;
+  margin: 0 15px;
 }
 
 .contact-social-desktop img,
 .contact-social-mobile img {
-  opacity: 0.5;
-  padding: 0 16px;
+  opacity: 0.75;
 }
 
 .contact-social-desktop {
@@ -98,7 +104,7 @@
 }
 
 .contact-button button {
-  width: 40vw;
+  width: 20vw;
   min-width: 275px;
   background: $button-gradient-dark;
 }
@@ -129,6 +135,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+
+  .social-button {
+    margin: 0 10px;
   }
 }
 

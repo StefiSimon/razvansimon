@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Painting } from '../../pages/ArtworksPage/types';
 
@@ -18,6 +18,7 @@ const Collection = ({
   carouselPaintings,
   galleryUrl,
 }: CollectionProps) => {
+  const navigate = useNavigate();
   return (
     <div className="collection-container">
       <div className="collection-info">
@@ -25,8 +26,12 @@ const Collection = ({
         <p className="collection-title">{title}</p>
         <p className="collection-desc">{description}</p>
         <div className="explore-button">
-          <button type="button" className="button">
-            <Link to={galleryUrl}>Explore gallery</Link>
+          <button
+            type="button"
+            className="button"
+            onClick={() => navigate(galleryUrl)}
+          >
+            Explore {title}
           </button>
         </div>
       </div>

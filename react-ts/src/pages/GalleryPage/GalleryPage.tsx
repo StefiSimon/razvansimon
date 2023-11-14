@@ -1,11 +1,4 @@
-import React, {
-  Fragment,
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import cn from 'classnames';
 import fullScreenIcon from './full-screen.png';
 import ProgressiveImage from 'react-progressive-graceful-image';
@@ -37,30 +30,27 @@ type GalleryImageModalProps = {
 const GalleryImageModal = ({
   isOpen,
   onCloseModal,
-  onKeyUp,
   imgSrc,
   index,
-}: GalleryImageModalProps) => {
-  return (
-    <Modal show={isOpen} handleClose={onCloseModal} handleOnKeyUp={onKeyUp}>
-      <div className="modal-picture">
-        <ProgressiveImage src={imgSrc} placeholder={imgSrc}>
-          {(src, loading) => (
-            <img
-              style={{
-                filter: loading ? 'blur(4px)' : 'blur(0px)',
-              }}
-              src={src}
-              alt="gallery painting"
-              tabIndex={index}
-              onBlur={onCloseModal}
-            />
-          )}
-        </ProgressiveImage>
-      </div>
-    </Modal>
-  );
-};
+}: GalleryImageModalProps) => (
+  <Modal show={isOpen} handleClose={onCloseModal}>
+    <div className="modal-picture">
+      <ProgressiveImage src={imgSrc} placeholder={imgSrc}>
+        {(src, loading) => (
+          <img
+            style={{
+              filter: loading ? 'blur(4px)' : 'blur(0px)',
+            }}
+            src={src}
+            alt="gallery painting"
+            tabIndex={index}
+            onBlur={onCloseModal}
+          />
+        )}
+      </ProgressiveImage>
+    </div>
+  </Modal>
+);
 
 type GalleryImageProps = {
   index: number;

@@ -8,6 +8,7 @@ const sanityClient = createClient({
 });
 
 const getSanityAssetUrl = (imageRef: string) => {
+  // eslint-disable-next-line
   let [imgType, imgRef, imgSize, imgExt] = imageRef?.split('-');
   return `https://cdn.sanity.io/images/v726rnf1/production/${imgRef}-${imgSize}.${imgExt}`;
 };

@@ -57,7 +57,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     updateAppearance(window.location.pathname);
-  }, []);
+  });
 
   const onMenuItemSelect = () => {
     setIsMenuOpen(false);

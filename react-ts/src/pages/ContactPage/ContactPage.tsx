@@ -36,19 +36,17 @@ const ContactPage = () => {
   };
 
   const getMailLink = () => {
-    const emailHref =
-      'mailto:razvan.simon10@gmail.com?subject=Email from ' +
+    const emailHref = ('mailto:razvan.simon10@gmail.com?subject=Email from ' +
       name +
       '&body=' +
-      message;
+      message) as string;
     const isSubmitDisabled = name.length === 0 || message.length === 0;
-    return (
-      <a
-        href={isSubmitDisabled ? '#' : emailHref}
-        className={isSubmitDisabled ? 'link-disabled' : ''}
-      >
-        Send Email
-      </a>
+    return isSubmitDisabled ? (
+      // eslint-disable-next-line
+      <a className="link-disabled">Send Email</a>
+    ) : (
+      // eslint-disable-next-line
+      <a href={emailHref}>Send Email</a>
     );
   };
 
@@ -64,13 +62,23 @@ const ContactPage = () => {
             <h1 className="contact-title">CONTACT</h1>
           </header>
           <div className="contact-social-mobile">
-            <a href={facebookLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={facebookLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-button"
+            >
               <img src={fbIconDesktop} alt="facebook" />
             </a>
-            <a href={instagramLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={instagramLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-button"
+            >
               <img src={igIconDesktop} alt="instagram" />
             </a>
-            <a href={gmailLink}>
+            <a href={gmailLink} className="social-button">
               <img src={gmIconDesktop} alt="gmail" />
             </a>
           </div>
@@ -85,6 +93,7 @@ const ContactPage = () => {
               href={facebookLink}
               target="_blank"
               rel="noopener noreferrer"
+              className="social-button"
             >
               <img src={fbIconDesktop} alt="facebook" />
             </motion.a>
@@ -98,6 +107,7 @@ const ContactPage = () => {
               href={instagramLink}
               target="_blank"
               rel="noopener noreferrer"
+              className="social-button"
             >
               <img src={igIconDesktop} alt="instagram" />
             </motion.a>
@@ -109,6 +119,7 @@ const ContactPage = () => {
               style={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               href={gmailLink}
+              className="social-button"
             >
               <img src={gmIconDesktop} alt="mail" />
             </motion.a>
