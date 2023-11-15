@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { routes } from '../../routes';
+import _ from 'lodash';
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const menuColors = {
@@ -12,8 +13,6 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuWithBackground, setIsMenuWithBackground] = useState(false);
   const [menuColor, setMenuColor] = useState(menuColors.WHITE);
-
-  const { origin } = window.location;
 
   const updateAppearance = (location: string) => {
     const galleryRoutes = Object.values(routes.gallery)?.map(
@@ -54,14 +53,62 @@ export const Layout = ({ children }: { children: ReactNode }) => {
     updateAppearance(window.location.pathname);
   };
 
+  const scrollToSection = (name: string) => {
+    const scrollY =
+      document.getElementById(name)?.getBoundingClientRect()?.y ||
+      document.getElementById(name)?.getBoundingClientRect()?.top ||
+      window.innerHeight;
+    window.scrollBy(0, scrollY);
+  };
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     updateAppearance(window.location.pathname);
-  });
 
-  const onMenuItemSelect = () => {
+    const hashRoute = window.location.hash;
+    const currentRoute = Object.keys(_.omit(routes.homepage, 'path')).find(
+      (route) => `#/${route}` === hashRoute
+    );
+    if (currentRoute) {
+      scrollToSection(currentRoute);
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const onMenuItemSelect = (link: string) => {
     setIsMenuOpen(false);
+    window.location.href = `${window.location.origin}/#/${link}`;
+    scrollToSection(link);
   };
+
+  const renderMenuElements = (asList = true) => {
+    const MenuElement = ({ routeName }: { routeName: string }) => (
+      // eslint-disable-next-line
+      <a
+        className="menu-item"
+        role="button"
+        onClick={() =>
+          // @ts-ignore
+          onMenuItemSelect(routes?.homepage?.[routeName]?.path)
+        }
+      >
+        {routeName}
+      </a>
+    );
+
+    return Object.keys(_.omit(routes.homepage, 'path')).map((routeName) =>
+      asList ? (
+        <li>
+          <MenuElement routeName={routeName} />
+        </li>
+      ) : (
+        <div style={{ padding: '10px 0' }}>
+          <MenuElement routeName={routeName} />
+        </div>
+      )
+    );
+  };
+
   return (
     <>
       <div
@@ -78,22 +125,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
             setIsMenuOpen(isOpen)
           }
         >
-          <a className="menu-item" href="/" onClick={onMenuItemSelect}>
-            home
-          </a>
-          <a className="menu-item" href="/#about" onClick={onMenuItemSelect}>
-            about
-          </a>
-          <a
-            className="menu-item"
-            href="/#collections"
-            onClick={onMenuItemSelect}
-          >
-            artworks
-          </a>
-          <a className="menu-item" href="/#contact" onClick={onMenuItemSelect}>
-            contact
-          </a>
+          {renderMenuElements(false)}
         </Menu>
       </header>
 
@@ -103,20 +135,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         } header-desktop`}
       >
         <nav>
-          <ul className={`${menuColor}-text`}>
-            <li>
-              <a href={`${origin}/#landing`}>home</a>
-            </li>
-            <li>
-              <a href={`${origin}/#about`}>about</a>
-            </li>
-            <li>
-              <a href={`${origin}/#collections`}>artworks</a>
-            </li>
-            <li>
-              <a href={`${origin}/#contact`}>contact</a>
-            </li>
-          </ul>
+          <ul className={`${menuColor}-text`}>{renderMenuElements()}</ul>
           <div className="vertical-divider"></div>
         </nav>
       </header>
